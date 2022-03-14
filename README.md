@@ -1,4 +1,4 @@
-# 아모레퍼시픽 과제
+# 상품 검색
 
 ## 산출물
 1. Case 1 데이터 Mapping Template
