@@ -8,9 +8,8 @@ from util.mysql_handler import Mysql
 from util.mysql_handler import SQL_DIR
 from util.elasticsearch_handler import Elasticsearch
 
-es = Elasticsearch()
-es_client = es.get_client()
-es_helper = es.get_helper()
+es_client = Elasticsearch.client
+es_helper = Elasticsearch.helper
 
 mysql = Mysql()
 mysql_cursor = mysql.get_cursor()
