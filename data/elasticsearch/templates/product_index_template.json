@@ -1,0 +1,70 @@
+{
+  "index_patterns": [
+    "product*"
+  ],
+  "settings": {
+    "index": {
+      "analysis": {
+        "analyzer": {
+          "amore_analyzer": {
+            "tokenizer": "discard_nori_tokenizer",
+            "filter": [
+              "product_synonym"
+            ]
+          }
+        },
+        "tokenizer": {
+          "discard_nori_tokenizer": {
+            "type": "nori_tokenizer",
+            "decompound_mode": "mixed"
+          }
+        },
+        "filter": {
+          "product_synonym": {
+            "type": "synonym",
+            "synonyms": [
+              "손 => 핸드"
+            ]
+          }
+        }
+      },
+      "number_of_shards": "1",
+      "number_of_replicas": "0"
+    }
+  },
+  "mappings": {
+    "properties": {
+      "product_no": {
+        "coerce": "false",
+        "type": "integer"
+      },
+      "product_name": {
+        "analyzer": "amore_analyzer",
+        "type": "text"
+      },
+      "product_price": {
+        "type": "float"
+      },
+      "brand_name": {
+        "type": "keyword",
+        "ignore_above": 256
+      },
+      "category_depth1_no": {
+        "type": "integer",
+        "coerce": false
+      },
+      "category_depth1_name": {
+        "type": "keyword",
+        "ignore_above": 256
+      },
+      "category_depth2_no": {
+        "type": "integer",
+        "coerce": false
+      },
+      "category_depth2_name": {
+        "type": "keyword",
+        "ignore_above": 256
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+host:
+  "localhost"
+port:
+  3306
+root_password:
+  "amore"
+user:
+  "amore"
+password:
+  "amore"
+database:
+  "amore"
+container_name:
+  "mysql"
+image_version:
+  "mysql:8.0.20"

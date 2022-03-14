@@ -1,0 +1,11 @@
+host:
+  "http://localhost:9200"
+container_name:
+  "elasticsearch"
+image_version:
+  "elasticsearch:7.5.1"
+boost_info:
+  category_depth1_name:
+    query: "생활용품"
+    boost: 2
+

@@ -1,0 +1,4 @@
+container_name:
+  "kibana"
+image_version:
+  "kibana:7.5.1"
