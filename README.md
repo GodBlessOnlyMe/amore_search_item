@@ -28,7 +28,7 @@ python3 mysql_to_es.py
 python3 api.py
 
 # 키워드로 상품 검색
-curl -X GET http://localhost:5000/product/search/?keyword=손크림
+curl -X GET http://localhost:5000/search?keyword=손크림
 ```
 ## Environment
 ```text
