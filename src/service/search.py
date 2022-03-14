@@ -11,8 +11,11 @@ class Search:
     boost_info = es_config.get("boost_info")
 
     def product_search_by_keyword(self, keyword, size=100):
-        """
-        search product-index documents by keyword
+        """search product-index documents by keyword
+        :param keyword: query keyword
+        :type keyword: str
+        :param size: the number of search result
+        :type size: int
         """
 
         body = {

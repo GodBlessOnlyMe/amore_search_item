@@ -1,6 +1,6 @@
-# 상품 검색
+# Search products by keyword
 
-## 산출물
+## Products
 1. Case 1 데이터 Mapping Template
 * ./data/elasticsearch/templates/product_index_template.json
 2. Case 2 데이터 수집/정제/적재
@@ -10,26 +10,51 @@
 4. Case 4 상품 검색 API
 * ./api.py
 
-## 사용법
+## Usage
 ```shell
-python3 main.py --type=mysql  # mysql docker container 실행
-python3 dump_sql_to_mysql.py  # sql 파일로 mysql dummy 데이터 dump
-python3 main.py --type=elasticsearch  # elasticsearch docker container 실행 및 nori_tokenizer 설치
-python3 main.py --type=kibana  # kibana docker container 실행
-python3 dump_from_mysql_to_es.py  # mysql 데이터를 elasticsearch bulk dump
+# mysql docker container 실행
+python3 main.py --type=mysql
+  
+# sql 파일로 mysql dummy 데이터 dump
+python3 dump_sql_to_mysql.py  
+
+# elasticsearch docker container 실행 및 nori_tokenizer 설치
+python3 main.py --type=elasticsearch
+
+# kibana docker container 실행  
+python3 main.py --type=kibana  
+
+# mysql 데이터를 elasticsearch bulk dump
+python3 dump_from_mysql_to_es.py  
+
 python3 api.py  # 상품검색 API(flask)를 실행
+
+# 키워드로 상품 검색
+curl -X GET http://localhost:5000/product/search/?keyword=손크림
+```
+## Environment
+```text
+Ubuntu 20.04.3 LTS
+Docker 4.1.1
+Python 3.8.10
+Elasticsearch 7.5.1
+Kibana 7.5.1
+MySQL 8.0.20
 ```
 
-## 프로젝트 구조
-
-## 개발 환경
-
-## 라이브러리
-
+## Libraries
+```text
+PyMySQL==1.0.2
+docker~=5.0.3
+PyYAML~=5.3.1
+elasticsearch~=7.5.1
+Flask~=2.0.3
+tqdm~=4.63.0
+requests~=2.26.0
+```
 
 ## TODO
 - ~~주석 적기~~
-- type hint
 - 프로젝트 구조 작성
 - 개발환경 작성
 - 라이브러리 작성

@@ -13,6 +13,10 @@ conn = mysql.get_conn()
 
 
 def dump_sql_to_mysql(sql_file_name):
+    """Read sql file and then dump it to mysql
+    :param sql_file_name: the sql file name
+    :type sql_file_name: str
+    """
     cursor = mysql.get_cursor()
     with open(os.path.join(DUMMY_DIR, sql_file_name)) as sql:
         sql_lines = sql.read().split(';')

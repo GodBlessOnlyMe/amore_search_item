@@ -18,6 +18,10 @@ class Container(object):
         """
         Run container
         Available container types : mysql, elasticsearch, kibana
+        :param container_type: the container type to run
+        :type container_type: str
+        :returns: whether the container is running
+        :rtype: bool
         """
 
         # Read config yaml
@@ -80,8 +84,11 @@ class Container(object):
 
     @staticmethod
     def is_running(container_name):
-        """
-        Check the container status by container name
+        """Check the container status by container name
+        :param container_name: the container name to be checked
+        :type container_type: str
+        :returns: whether the container is running
+        :rtype: bool
         """
         container = DOCKER_CLIENT.containers.get(container_name)
         container_state = container.attrs['State']

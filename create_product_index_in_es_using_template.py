@@ -24,6 +24,12 @@ def main():
 
 
 def create_index_template(template_name, template):
+    """create elasticsearch index template by template name and template
+    :param template_name: the name for created template
+    :type template_name: str
+    :param template: json string
+    :type template: str
+    """
     uri = es.config.get("host") + f"/_template/{template_name}"
     headers = {"Content-Type": "application/json; charset=utf-8"}
     resp = requests.put(uri, data=template.encode('utf-8'), headers=headers)
@@ -31,6 +37,10 @@ def create_index_template(template_name, template):
 
 
 def create_index(index_name):
+    """create elasticsearch index by index name
+    :param index_name: the name for created index
+    :type index_name: str
+    """
     uri = es.config.get("host") + f"/{index_name}"
     headers = {"Content-Type": "application/json; charset=utf-8"}
     resp = requests.put(uri, headers=headers)

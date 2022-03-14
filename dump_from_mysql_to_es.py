@@ -1,5 +1,5 @@
 """
-mysql 데이터를 es에 dump
+dump data from mysql to elasticsearch
 """
 
 import os

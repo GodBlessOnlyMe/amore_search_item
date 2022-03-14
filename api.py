@@ -1,5 +1,5 @@
 """
-검색 api
+api for searching products by keyword
 """
 
 from flask import Flask, request
