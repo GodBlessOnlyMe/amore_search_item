@@ -14,6 +14,11 @@ DUMMY_DIR = SQL_DIR / "dummy"
 class Mysql(object):
     config = get_config('mysql')
 
+    def __init__(self, cursor_class=None):
+        self.conn = None
+        self.cursor = None
+        self.cursor_class = cursor_class
+
     def _set_conn(self):
         conn = pymysql.connect(
             host=self.config.get("host"),
@@ -26,24 +31,28 @@ class Mysql(object):
         self.conn = conn
 
     def get_conn(self):
-        if not hasattr(self, 'conn'):
+        if not self.conn:
             self._set_conn()
         return self.conn
 
-    def _set_cursor(self):
-        if not hasattr(self, 'conn'):
+    def set_cursor(self):
+        if not self.conn:
             self._set_conn()
-        self.cursor = self.conn.cursor()
+
+        if self.cursor_class:
+            self.cursor = self.conn.cursor(self.cursor_class)
+        else:
+            self.cursor = self.conn.cursor()
 
     def get_cursor(self):
-        if not hasattr(self, 'cursor'):
-            self._set_cursor()
+        if not self.cursor:
+            self.set_cursor()
         return self.cursor
 
     def close_cursor(self):
-        if hasattr(self, 'cursor'):
+        if not self.cursor:
             self.cursor.close()
 
     def close_conn(self):
-        if hasattr(self, 'conn'):
+        if not self.conn:
             self.conn.close()

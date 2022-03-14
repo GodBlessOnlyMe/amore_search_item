@@ -6,6 +6,7 @@ from util.config import get_config
 
 DOCKER_CLIENT = docker.DockerClient(base_url='unix://var/run/docker.sock')
 RUNNING = 'running'
+ALL_CONTAINERS = ['mysql', 'elasticsearch', 'kibana']
 
 
 class Container(object):
@@ -51,7 +52,6 @@ class Container(object):
                 --name {config.get("container_name")} \
                 {config.get("image_version")}
                 ''',
-            "logstash": "",
             "kibana": f'''
                 docker run \
                 --detach \
@@ -59,8 +59,7 @@ class Container(object):
                 --link elasticsearch:elasticsearch \
                 --name {config.get("container_name")} \
                 {config.get("image_version")}
-                ''',
-            "flask": ""
+                '''
         }
         print(docker_run_command.get(container_type))
         os.system(docker_run_command.get(container_type))
@@ -95,6 +94,12 @@ class Container(object):
         container_is_running = container_state['Status'] == RUNNING
         return container_is_running
 
+    @staticmethod
+    def run_all():
+        for container_type in ALL_CONTAINERS:
+            Container.run(container_type)
+
+
 
 if __name__ == '__main__':
-    Container.run('mysql')
+    Container.run_all()

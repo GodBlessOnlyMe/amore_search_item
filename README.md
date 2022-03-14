@@ -12,22 +12,20 @@
 
 ## Usage
 ```shell
-# mysql docker container 실행
-python3 main.py --type=mysql
+# docker container 실행
+python3 run_containers.py --type={mysql, elasticsearch, kibana, all}
   
 # sql 파일로 mysql dummy 데이터 dump
-python3 dump_sql_to_mysql.py  
+python3 sql_to_mysql.py  
 
-# elasticsearch docker container 실행 및 nori_tokenizer 설치
-python3 main.py --type=elasticsearch
-
-# kibana docker container 실행  
-python3 main.py --type=kibana  
+# create both index template and index in elasticsearch
+python3 create_product_index_in_es_using_template.py 
 
 # mysql 데이터를 elasticsearch bulk dump
-python3 dump_from_mysql_to_es.py  
+python3 mysql_to_es.py  
 
-python3 api.py  # 상품검색 API(flask)를 실행
+# 상품검색 API(flask)를 실행
+python3 api.py
 
 # 키워드로 상품 검색
 curl -X GET http://localhost:5000/product/search/?keyword=손크림
